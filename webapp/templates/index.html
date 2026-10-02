@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Waste Sorting</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="page">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <div class="logo">♻️</div>
+
+                <div>
+                    <h1>Smart Waste Sorting</h1>
+
+                    <p>
+                        AI-powered waste classification
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="model-badge">
+                <span class="status-dot"></span>
+                EfficientNetB0
+            </div>
+
+        </header>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <span class="eyebrow">
+                    COMPUTER VISION • DEEP LEARNING
+                </span>
+
+                <h2>
+                    Sort waste smarter<br>
+                    with <span>AI.</span>
+                </h2>
+
+                <p>
+                    Upload an image of a waste item and our
+                    deep learning model will identify its
+                    material category in seconds.
+                </p>
+
+            </div>
+
+
+            <!-- ================= UPLOAD CARD ================= -->
+
+            <div class="upload-card">
+
+                <div
+                    class="drop-zone"
+                    id="dropZone"
+                >
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>
+                        Upload a waste image
+                    </h3>
+
+                    <p>
+                        Drag & drop your image here
+                    </p>
+
+                    <span class="or">
+                        or
+                    </span>
+
+                    <label
+                        for="imageInput"
+                        class="browse-btn"
+                    >
+                        Browse Files
+                    </label>
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden
+                    >
+
+                    <small>
+                        JPG, JPEG, PNG • Max 10 MB
+                    </small>
+
+                </div>
+
+
+                <!-- Image Preview -->
+
+                <div
+                    id="previewContainer"
+                    class="preview-container"
+                >
+
+                    <img
+                        id="preview"
+                        src=""
+                        alt="Selected waste"
+                    >
+
+                    <button
+                        id="removeBtn"
+                        class="remove-btn"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <button
+                    id="classifyBtn"
+                    class="classify-btn"
+                    onclick="classifyImage()"
+                >
+                    Analyze Waste
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESULT ================= -->
+
+        <section
+            id="result"
+            class="result-section"
+        >
+
+            <div class="result-image-card">
+
+                <div class="section-label">
+                    ANALYZED IMAGE
+                </div>
+
+                <img
+                    id="resultImage"
+                    src=""
+                    alt="Analyzed waste"
+                >
+
+            </div>
+
+
+            <div class="result-card">
+
+                <div class="section-label">
+                    AI CLASSIFICATION
+                </div>
+
+                <div class="prediction-header">
+
+                    <div>
+
+                        <p class="detected-label">
+                            DETECTED MATERIAL
+                        </p>
+
+                        <h2 id="prediction">
+                            PLASTIC
+                        </h2>
+
+                    </div>
+
+                    <div class="confidence-circle">
+
+                        <span id="confidenceValue">
+                            0%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Confidence bar -->
+
+                <div class="confidence-section">
+
+                    <div class="confidence-title">
+
+                        <span>
+                            Confidence
+                        </span>
+
+                        <span id="confidenceText">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <div class="progress-bg">
+
+                        <div
+                            id="confidenceBar"
+                            class="progress"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Top predictions -->
+
+                <div class="top-section">
+
+                    <h3>
+                        Top Predictions
+                    </h3>
+
+                    <div id="topPredictions"></div>
+
+                </div>
+
+
+                <button
+                    class="try-again"
+                    onclick="resetApp()"
+                >
+                    Analyze Another Image
+                    ↻
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MODEL INFO ================= -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <span class="stat-number">
+                    91.18%
+                </span>
+
+                <span class="stat-label">
+                    Test Accuracy
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-number">
+                    10
+                </span>
+
+                <span class="stat-label">
+                    Waste Classes
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-number">
+                    12,259
+                </span>
+
+                <span class="stat-label">
+                    Training Images
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-number">
+                    AI
+                </span>
+
+                <span class="stat-label">
+                    EfficientNetB0
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <p>
+                Smart Waste Sorting • Deep Learning Project
+            </p>
+
+            <span>
+                Vision-Based Waste Classification
+            </span>
+
+        </footer>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div
+        id="loading"
+        class="loading-overlay"
+    >
+
+        <div class="loader"></div>
+
+        <h3>
+            Analyzing waste...
+        </h3>
+
+        <p>
+            EfficientNetB0 is processing your image
+        </p>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}">
+    </script>
+
+</body>
+
+</html>
