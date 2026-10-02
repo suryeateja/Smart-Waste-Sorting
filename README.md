@@ -60,41 +60,79 @@ The project uses the **Garbage Classification V2** dataset.
 | Validation Images | 1,833 |
 | Test Images | 1,848 |
 
-### Dataset Classes
+## Dataset Classes
 
-```text
-battery
-biological
-cardboard
-clothes
-glass
-metal
-paper
+The dataset contains the following 10 classes:
 
+- Battery
+- Biological
+- Cardboard
+- Clothes
+- Glass
+- Metal
+- Paper
+- Plastic
+- Shoes
+- Trash
 
-Dataset Split
+## Dataset Split
+
 The dataset was divided into:
-70% → Training
-15% → Validation
-15% → Testing
+
+- **70%** → Training
+- **15%** → Validation
+- **15%** → Testing
 
 A fixed random seed was used to maintain a consistent split across the experiments.
-The dataset is not included in this repository.
 
-🧠 Models
+> The dataset is not included in this repository.
+
+---
+
+# 🧠 Models
+
 Six different CNN architectures were evaluated.
-Phase 1
+
+## Phase 1
+
 1. Custom CNN
 2. VGG16
 3. MobileNetV2
-Phase 2
+
+## Phase 2
+
 4. DenseNet121
 5. EfficientNetB0
 6. VGG19
-🏗️ Model Details
+
+
+# 🧠 Models
+
+Six different CNN architectures were evaluated.
+
+## Phase 1
+
 1. Custom CNN
+2. VGG16
+3. MobileNetV2
+
+## Phase 2
+
+4. DenseNet121
+5. EfficientNetB0
+6. VGG19
+
+---
+
+## 🏗️ Model Details
+
+### 1. Custom CNN
+
 A CNN architecture designed and trained from scratch.
-Main components:
+
+**Architecture:**
+
+```text
 Input Image
      ↓
 Data Augmentation
